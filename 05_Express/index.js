@@ -2,12 +2,14 @@ const express = require ('express')
 const app = express()
 const port = 3000
 
-// Middlewares
+// Para servir en formato estatico contenido (html, css) como un repositorio
+// Servidor de ficheros estáticos
+app.use(express.static(__dirname + '/public'))
+
 app.get('/', (req, res, next) => {
     res.send('Hola Mundo desde express')
 })
 
-// Middlewares
 app.get('/user', (req, res, next) => {
     let user = req.param('name') ? req.param('name') : 'usuario...'
     // let user = req.params.name
@@ -22,9 +24,3 @@ app.get('*', (req, res, next) => {
 app.listen(port, () => {
     console.log('Escuchando en el puerto', port)
 })
-
-// REST (API REST)
-// app.get
-// app.post
-// app.put
-// app.delete
